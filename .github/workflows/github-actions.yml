@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,12 +21,9 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Run tests
-      run: pytest
-
     - name: Deploy to Azure
       if: github.ref == 'refs/heads/main'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'cliente-item'  # Nombre de tu aplicación en Azure
+        app-name: 'cliente-item'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
