@@ -1,0 +1,24 @@
+{
+    "runtime": {
+      "pythonVersion": "3.8"
+    },
+    "appSettings": [
+      {
+        "name": "FASTAPI_ENV",
+        "value": "production"
+      },
+      {
+        "name": "APP_SETTINGS",
+        "value": "config.ProductionConfig"
+      },
+      {
+        "name": "DATABASE_URL",
+        "value": "Server=tcp:nombre_servidor.database.windows.net,1433;Initial Catalog=nombre_base_datos;User ID=usuario;Password=contraseña;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+      },
+      {
+        "name": "SECRET_KEY",
+        "value": "tu_clave_secreta"
+      }
+    ]
+  }
+  
