@@ -1,5 +1,6 @@
 #!/bin/bash
 
+pip install -r requirements.txt
 
 
 # Iniciar la aplicación con Uvicorn
