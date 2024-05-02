@@ -12,26 +12,23 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
+    
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.11'
 
-    - name: Load environment variables
-      run: |
-        export ENVIRONMENT=prueba
-        export PRODUCTION=produccion
-
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Print environment variables
-      run: echo "ENVIRONMENT=${ENVIRONMENT}" && echo "PRODUCTION=${PRODUCTION}"
+    # Desactivar procesamiento de comandos
+    - name: Desactivar comandos de workflow
+      run: |
+        echo "::stop-commands::$(echo -n ${{ github.token }} | sha256sum | head -c 64)"
 
-    - name: Deploy to Azure
-      if: github.ref == 'refs/heads/main'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'cliente-item'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+    # Ejecutar tus acciones aquí
+
+    # Reactivar procesamiento de comandos
+    - name: Reactivar comandos de workflow
+      run: |
+        echo "::$(echo -n ${{ github.token }} | sha256sum | head -c 64)::"
