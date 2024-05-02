@@ -4,7 +4,7 @@ import os
 from pydantic import BaseModel
 from database import Cliente, Item, drop_cliente_table, create_cliente_table, insert_cliente, drop_item_table, create_item_table, insert_item, get_all_clientes, get_all_items, close_connection,create_initial_data
 ENVIRONMENT = os.getenv("ENVIRONMENT", "prueba")
-
+PRODUCTION = os.getenv("PRODUCTION", "produccion")
 app = FastAPI()
 drop_cliente_table()
 drop_item_table()
