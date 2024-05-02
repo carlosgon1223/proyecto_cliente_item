@@ -10,29 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up environment variables
-      run: |
-        echo "Loading environment variables"
-        set -o allexport
-        source .env
-        set +o allexport
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Checkout code
-      uses: actions/checkout@v2
-    
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.11'
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
 
-    - name: Install dependencies
-      run: pip install -r requirements.txt
+      - name: Add.env to the path
+        run: echo "::add-path::$(pwd)/.env"
 
-    - name: Deploy to Azure
-      if: github.ref == 'refs/heads/main'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'cliente-item'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+      - name: Load environment variables
+        run: ..env
 
-        
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Deploy to Azure
+        if: github.ref == 'refs/heads/main'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'cliente-item'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
