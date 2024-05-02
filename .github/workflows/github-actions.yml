@@ -8,10 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true   # Habilitar comandos no seguros
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    
 
     - name: Set up Python
       uses: actions/setup-python@v2
