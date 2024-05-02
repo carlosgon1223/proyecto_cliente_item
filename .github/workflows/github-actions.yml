@@ -18,11 +18,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Add.env to the path
+      - name: Add .env to the path
         run: echo "::add-path::$(pwd)/.env"
 
       - name: Load environment variables
-        run: ..env
+        run: . .env
 
       - name: Install dependencies
         run: pip install -r requirements.txt
