@@ -11,7 +11,11 @@ jobs:
 
     steps:
     - name: Set up environment variables
-      run: echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
+      run: |
+        echo "Loading environment variables"
+        set -o allexport
+        source .env
+        set +o allexport
 
     - name: Checkout code
       uses: actions/checkout@v2
@@ -30,3 +34,5 @@ jobs:
       with:
         app-name: 'cliente-item'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+
+        
