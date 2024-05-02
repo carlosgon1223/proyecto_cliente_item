@@ -1,0 +1,23 @@
+name: Pipeline de Prueba
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  prueba:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del repositorio
+      uses: actions/checkout@v2
+
+    - name: Configurar entorno
+      run: echo "::set-env name=ENVIRONMENT::prueba"
+
+    - name: Instalar dependencias
+      run: pip install -r requirements.txt
+
+    - name: Ejecutar pruebas automatizadas
+      run: pytest

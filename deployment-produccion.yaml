@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-pod-deployment-produccion
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mi-pod
+      environment: produccion
+  template:
+    metadata:
+      labels:
+        app: mi-pod
+        environment: produccion
+    spec:
+      containers:
+      - name: mi-contenedor
+        image: nginx:latest
+        ports:
+        - containerPort: 80

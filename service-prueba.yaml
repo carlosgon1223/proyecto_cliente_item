@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mi-pod-service-prueba
+spec:
+  selector:
+    app: mi-pod
+    environment: prueba
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
