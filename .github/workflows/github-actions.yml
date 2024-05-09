@@ -21,14 +21,11 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    # Desactivar procesamiento de comandos
+   
     - name: Desactivar comandos de workflow
       run: |
         echo "::stop-commands::$(echo -n ${{ github.token }} | sha256sum | head -c 64)"
 
-    # Ejecutar tus acciones aquí
-
-    # Reactivar procesamiento de comandos
     - name: Reactivar comandos de workflow
       run: |
         echo "::$(echo -n ${{ github.token }} | sha256sum | head -c 64)::"

@@ -1,4 +1,6 @@
+# database.py
 import mysql.connector
+import os
 from pydantic import BaseModel
 from typing import List, Optional
 import threading
@@ -15,11 +17,17 @@ class Item(BaseModel):
     nombre: str
     codigo: str
 
+# Use environment variables for database connection
+DB_HOST = os.getenv("DB_HOST", "producciondb.mysql.database.azure.com")
+DB_USER = os.getenv("DB_USER", "carlosgon")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "Qwezaxs1999")
+DB_NAME = os.getenv("DB_NAME", "produccion_db")
+
 db_connection = mysql.connector.connect(
-    host="producciondb.mysql.database.azure.com",
-    user="carlosgon",
-    password="Qwezaxs1999",
-    database="produccion_db"
+    host=DB_HOST,
+    user=DB_USER,
+    password=DB_PASSWORD,
+    database=DB_NAME
 )
 db_cursor = db_connection.cursor()
 

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cliente-item-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cliente-item-api
+  template:
+    metadata:
+      labels:
+        app: cliente-item-api
+    spec:
+      containers:
+      - name: cliente-item-api
+        image: gcr.io/steadfast-helix-422023/mi-imagen-python
+        ports:
+        - containerPort: 8000
